@@ -44,11 +44,23 @@ xhr.onload = function () {
     return ele;
   }
 
+  function pageload(x) {
+    for (let i = x * 10; i < x * 10 + res.length / pageSize; i++) {
+      var tr = document.createElement("tr");
+      var th = createThTd("th", res[i].id);
+      var td1 = createThTd("td", res[i].name);
+      var td2 = createThTd("td", res[i].email);
+      tr.append(th, td1, td2);
+      tbody.append(tr);
+    }
+  }
+
   table.append(thead, tbody);
   document.body.append(table);
 
   var nav = document.createElement("nav");
   nav.setAttribute("aria-label", "Page navigation example");
+  nav.setAttribute("class", "d-flex justify-content-center");
 
   var ul = document.createElement("ul");
   ul.setAttribute("class", "pagination");
@@ -96,26 +108,15 @@ xhr.onload = function () {
     pageload(currentPage);
   }
   function displayPrev() {
-    if (currentPage >= 0) {
+    if (currentPage > 0) {
       currentPage -= 1;
       pageload(currentPage);
     }
   }
   function displayNext() {
-    if (currentPage < 10) {
+    if (currentPage < 9) {
       currentPage += 1;
       pageload(currentPage);
-    }
-  }
-
-  function pageload(x) {
-    for (let i = x * 10; i < x * 10 + res.length / pageSize; i++) {
-      var tr = document.createElement("tr");
-      var th = createThTd("th", res[i].id);
-      var td1 = createThTd("td", res[i].name);
-      var td2 = createThTd("td", res[i].email);
-      tr.append(th, td1, td2);
-      tbody.append(tr);
     }
   }
 };
