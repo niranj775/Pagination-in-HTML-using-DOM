@@ -103,20 +103,27 @@ xhr.onload = function () {
   document.body.append(nav);
 
   function display(selectedPage) {
+    deleteData();
     currentPage = selectedPage;
 
     pageload(currentPage);
   }
   function displayPrev() {
     if (currentPage > 0) {
+      deleteData();
       currentPage -= 1;
       pageload(currentPage);
     }
   }
   function displayNext() {
     if (currentPage < 9) {
+      deleteData();
       currentPage += 1;
       pageload(currentPage);
     }
+  }
+  function deleteData() {
+    var del = document.querySelector("tbody").children;
+    for (let e of del) e.remove();
   }
 };
