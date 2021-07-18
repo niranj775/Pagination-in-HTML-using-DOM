@@ -125,5 +125,8 @@ xhr.onload = function () {
   function deleteData() {
     var del = document.querySelector("tbody").children;
     for (let e of del) e.remove();
+    for (let e of del) e.remove();
+    for (let e of del) e.remove();
+    for (let e of del) e.remove();
   }
 };
