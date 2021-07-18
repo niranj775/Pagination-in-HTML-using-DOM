@@ -45,6 +45,8 @@ xhr.onload = function () {
   }
 
   function pageload(x) {
+    let tb = document.querySelector("tbody");
+    if (tb) tb.innerHTML = "";
     for (let i = x * 10; i < x * 10 + res.length / pageSize; i++) {
       var tr = document.createElement("tr");
       var th = createThTd("th", res[i].id);
@@ -103,27 +105,19 @@ xhr.onload = function () {
   document.body.append(nav);
 
   function display(selectedPage) {
-    deleteData();
     currentPage = selectedPage;
-
     pageload(currentPage);
   }
   function displayPrev() {
     if (currentPage > 0) {
-      deleteData();
       currentPage -= 1;
       pageload(currentPage);
     }
   }
   function displayNext() {
     if (currentPage < 9) {
-      deleteData();
       currentPage += 1;
       pageload(currentPage);
     }
-  }
-  function deleteData() {
-    var del = document.querySelector("tbody");
-    del.innerHTML = "";
   }
 };
